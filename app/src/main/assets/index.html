@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>Secret Secret</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/ui.css" />
+  </head>
+  <body>
+    <!-- Contacts Page -->
+    <div id="contactsPage">
+      <h2>Secret Secret</h2>
+      <ul id="contactList" class="center"></ul>
+      <button id="openAddContactPage" class="btn btn-primary mt-3"><i class="bi bi-person-add"></i> Add Contact</button>
+      <button id="myaccount" class="btn btn-primary mt-3"><i class="bi bi-key"></i> My Account</button>
+    </div>
+
+    <!-- Messages Page -->
+    <div id="messagesPage" class="d-flex flex-column hidepage">
+      <div class="header d-flex align-items-center">
+        <button class="btn btn-link text-white backBtn"><i class="bi bi-arrow-bar-left"></i></button>
+        <h3 id="activeContactName" class="mb-0 ms-2">Contact Name</h3>
+        <div class="ms-auto">
+          <button class="btn btn-link text-white" id="decodeMessageBtn"><i class="bi bi-envelope-arrow-down"></i></button>
+          <button class="btn btn-link text-white" id="edit_contact"><i class="bi bi-person-gear"></i></button>
+          <button class="btn btn-link text-white" id="delete_contact"><i class="bi bi-person-x"></i></button>
+        </div>
+      </div>
+      <div id="messageList"></div>
+      <div id="messageInput">
+        <textarea id="messageText" placeholder="Type a message"></textarea>
+        <button id="sendMessageBtn" class="btn btn-primary w-100 mt-2"><i class="bi bi-lock"></i> Encrypt Message</button>
+      </div>
+    </div>
+
+    <!-- addContactsPage Page -->
+    <div id="addContactsPage" class="d-flex flex-column container hidepage">
+      <div class="header">
+        <button class="btn btn-link text-white backBtn"><i class="bi bi-arrow-bar-left"></i></button>
+        <h3 class="text-center">Add / Edit Contact</h3>
+      </div>
+      <div id="add_contact" class="row mt-3">
+        <input id="contactID" class="hidden" />
+        <div class="input-group mb-3">
+          <input id="contactNameInput" class="form-control" placeholder="Contact Name" />
+        </div>
+        <div class="input-group mb-3">
+          <input id="contactKeyInput" class="form-control" placeholder="Pre-Shared Key" />
+          <span class="input-group-text" id="scan_qr_key"><i class="bi bi-qr-code-scan"></i></span>
+        </div>
+        <div class="input-group mb-3">
+          <button id="saveContact" class="btn btn-primary w-100 mb-3"><i class="bi bi-floppy"></i> Save</button>
+          <button id="closeContactModal" class="btn btn-secondary w-100"><i class="bi bi-x-circle-fill"></i> Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Account Page -->
+    <div id="addMyAccount" class="d-flex flex-column container hidepage">
+      <div class="header">
+        <button class="btn btn-link text-white backBtn"><i class="bi bi-arrow-bar-left"></i></button>
+        <h3 class="text-center">My Account</h3>
+      </div>
+      <div id="my_account" class="row mt-3">
+        <input id="myid" class="hidden" />
+        <div class="input-group mb-3">
+          <input id="myname" class="form-control" placeholder="myname" />
+        </div>
+        <div class="input-group mb-3">
+          <input id="mykey" class="form-control disabled" placeholder="Pre-Shared Key" />
+          <span class="input-group-text" id="edit_my_key"><i class="bi bi-pencil-square"></i></span>
+          <span class="input-group-text" id="scan_my_qr_key"><i class="bi bi-qr-code-scan"></i></span>
+          <span class="input-group-text" id="generate_key"><i class="bi bi-arrow-clockwise"></i></span>
+        </div>
+        <div class="input-group mb-3 d-flex justify-content-center">
+          <div class="myqrcodeWrapper">
+            <div class="mb-3" id="myqrcode"></div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <button id="save_account" class="btn btn-primary w-100 mb-3"><i class="bi bi-floppy"></i> Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modals (unchanged) -->
+    <div id="scanModal" class="modal hidden" style="z-index: 1060;">
+      <div class="modalContent">
+        <h3>Scan QR</h3>
+        <video id="video" autoplay></video>
+        <canvas id="canvas" hidden></canvas>
+        <button class="btn btn-secondary w-100 mt-2 stopScan">Cancel</button>
+      </div>
+    </div>
+
+    <div id="decodeModal" class="modal hidden">
+      <div class="modalContent container">
+        <h3>Decode Message</h3>
+        <div class="row">
+          <div class="input-group mb-3">
+            <textarea id="encmessage" class="form-control" placeholder="Encrypted"></textarea>
+            <span class="input-group-text" id="scan_qr_message"><i class="bi bi-qr-code-scan"></i></span>
+          </div>
+        </div>
+        <div class="row">
+          <button id="decode_message" class="btn btn-primary w-100 mb-3"><i class="bi bi-unlock"></i> Decode</button>
+          <div class="input-group mb-3">
+            <textarea id="decodedmsg" class="form-control" placeholder="Decoded"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <button id="store_message" class="btn btn-success w-100 mt-2"><i class="bi bi-download"></i> Store</button>
+          <button id="close_decodeModal" class="btn btn-secondary w-100 mt-2"><i class="bi bi-x-circle-fill"></i> Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="QRModal" class="modal hidden">
+      <div class="modalContent">
+        <h3>Message</h3>
+        <div class="container">
+          <div class="row">
+            <div class="d-flex justify-content-center">
+              <div class="myqrcodeWrapper">
+                <div class="mb-3" id="mymessageqrcode"></div>
+              </div>
+            </div>
+            <div class="row">
+              <textarea class="mb-3" id="enctext"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary w-100 mt-2" id="confirm_sent"><i class="bi bi-download"></i> Store</button>
+        <button class="btn btn-secondary w-100 mt-2" id="close_QRModal"><i class="bi bi-x-circle-fill"></i> Close</button>
+      </div>
+    </div>
+
+    <script src="js/jquery-4.0.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jsQR.js"></script>
+    <script src="js/qrcode.min.js"></script>
+    <script src="js/bip-0039english.js"></script>
+    <script src="js/bootbox.all.min.js"></script>
+    <script src="js/crypto.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

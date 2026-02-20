@@ -1,0 +1,226 @@
+      body {
+        background: #141414;
+        min-height: 100vh;
+        overflow-x: hidden;
+        color: white;
+        overflow: hidden; /* disables scrolling on the main page */
+      }
+
+      #scanModal video {
+        /* width: 300px; */ /* fixed width for scanner window */
+        max-width: 100%; /* responsive on small screens */
+        height: auto;
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+        margin: 0 auto; /* center horizontally */
+        display: block;
+
+      }
+
+      /* ---------- Contacts Page ---------- */
+      #contactsPage {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* top-align the content */
+        align-items: center; /* horizontal center */
+        height: 100vh;
+        padding: 1rem;
+        overflow-y: auto; /* scroll if list is long */
+      }
+
+      #contactsPage h2 {
+        margin-bottom: 2rem;
+      }
+
+      #contactList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* center each contact horizontally */
+      }
+
+      #contactList li {
+        width: 100%; /* full width within max-width */
+        text-align: center; /* center text */
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        background: #222;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      #contactList li:hover {
+        background: #333;
+      }
+
+      /* ---------- Messages Page ---------- */
+      #messagesPage {
+        display: none;
+        height: 100vh;
+        flex-direction: column;
+        overflow: hidden; /* prevents scrolling */
+      }
+
+      #messagesPage .header {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid #333;
+      }
+
+      #messagesPage #backBtn {
+        margin-right: 1rem;
+      }
+
+      #messageList {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem;
+         /*  max-height: 400px; /* adjust as needed */
+         /*  overflow-y: auto; */
+         /*  padding: 10px; */
+      }
+
+      /* Message bubbles */
+      .message {
+        max-width: 70%;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem 0;
+        border-radius: 16px;
+        position: relative;
+        word-wrap: break-word;
+      }
+
+      .message.sent {
+        background-color: #1d3669;
+        color: white;
+        margin-left: auto;
+        border-bottom-right-radius: 0;
+      }
+
+      .message.received {
+        background-color: #222;
+        color: white;
+        margin-right: auto;
+        border-bottom-left-radius: 0;
+      }
+
+      .timestamp {
+        font-size: 0.65rem;
+        opacity: 0.7;
+        display: block;
+        margin-top: 0.25rem;
+      }
+
+      #messageInput {
+        padding: 1rem;
+        border-top: 1px solid #333;
+        background: #141414;
+      }
+
+      #messageInput textarea {
+        width: 100%;
+        min-height: 50px;
+        border-radius: 8px;
+        padding: 0.5rem;
+        resize: none;
+        background: #222;
+        color: white;
+        border: none;
+      }
+
+      #messageInput button {
+        margin-top: 0.5rem;
+      }
+      .modalContent {
+        background-color: #141414;
+      }
+
+      .hidepage {
+        display: none !important;
+      }
+      .showpage {
+        display: flex !important;
+      }
+      .hidden {
+        display: none;
+      }
+
+      .myqrcodeWrapper {
+        background: white;
+        display: inline-block;
+        padding: 16px;
+        border-radius: 8px;
+      }
+      .disabled {
+        pointer-events: none;
+        opacity: 0.5; /* Optional: Makes the input field look disabled */
+        background-color: #ccc; /* Optional: Changes the background color to indicate it's disabled */
+      }
+
+
+      .chat-row {
+        display: flex;
+        width: 100%;
+      }
+      
+      /* Left side */
+      .chat-row.inbound {
+        justify-content: flex-start;
+      }
+      
+      /* Right side */
+      .chat-row.outbound {
+        justify-content: flex-end;
+      }
+      
+      /* Bubble itself */
+      .chat-bubble {
+        max-width: 70%;
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: #e5e5ea;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Outbound bubble color */
+      .chat-row.outbound .chat-bubble {
+        background: #0c5479;
+        color: white;
+      }
+      
+      
+      /* Outbound bubble color */
+      .chat-row.inbound .chat-bubble {
+        background: #3f4142;
+        color: white;
+      }
+      
+      
+      /* Sender name */
+      .chat-name {
+        font-size: 11px;
+        font-weight: bold;
+        margin-bottom: 2px;
+        opacity: 0.8;
+      }
+      
+      /* Message text */
+      .chat-text {
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+      
+      /* Timestamp */
+      .chat-time {
+        font-size: 10px;
+        opacity: 0.6;
+        align-self: flex-end;
+        margin-top: 4px;
+      }
