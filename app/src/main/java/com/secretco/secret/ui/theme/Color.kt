@@ -1,4 +1,4 @@
-package com.secret.secret.ui.theme
+package com.secretco.secret.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

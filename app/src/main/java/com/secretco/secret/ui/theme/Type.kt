@@ -1,4 +1,4 @@
-package com.secret.secret.ui.theme
+package com.secretco.secret.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

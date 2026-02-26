@@ -1,4 +1,4 @@
-package com.secret.secret
+package com.secretco.secret
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
